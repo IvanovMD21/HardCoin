@@ -156,6 +156,13 @@ document.addEventListener('click', (e) => {
     function openModal(modalId) {
       document.getElementById(modalId).classList.add('active');
     }
+        // Функция подтверждения выхода
+    async function confirmLogout() {
+      const result = await confirmAsync('Вы уверены, что хотите выйти из аккаунта?');
+      if (result) {
+        logout();
+      }
+    }
     
     // Закрытие модальных окон по клику вне их
     window.addEventListener('click', (e) => {
