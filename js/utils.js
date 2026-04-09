@@ -24,14 +24,13 @@ function logout() {
   
   // Определяем, где мы находимся
   const path = window.location.pathname;
-  const repoName = 'HardCoin';
   
   if (path.includes('/pages/')) {
     // Если мы в папке pages, поднимаемся на уровень выше
     window.location.href = '../index.html';
   } else {
-    // Если мы в корне или другом месте
-    window.location.href = `/${repoName}/`;
+    // Если мы уже в корне
+    window.location.href = 'index.html';
   }
 }
 
