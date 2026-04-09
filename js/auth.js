@@ -153,7 +153,12 @@ function handleLogin(e) {
   
   // Перенаправляем в личный кабинет
   setTimeout(() => {
-    window.location.href = 'dashboard.html';
+    const path = window.location.pathname;
+    if (path.includes('/pages/')) {
+      window.location.href = 'dashboard.html';
+    } else {
+      window.location.href = 'pages/dashboard.html';
+    }
   }, 500);
 }
 
@@ -226,8 +231,14 @@ function handleRegister(e) {
   setCurrentUser(newUser);
   showNotification('Регистрация успешна! Добро пожаловать в Hard Coin!', 'success');
   
+  // После успешного входа
   setTimeout(() => {
-    window.location.href = 'dashboard.html';
+    const path = window.location.pathname;
+    if (path.includes('/pages/')) {
+      window.location.href = 'dashboard.html';
+    } else {
+      window.location.href = 'pages/dashboard.html';
+    }
   }, 500);
 }
 
