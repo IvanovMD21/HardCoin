@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>Hard Coin — Авторизация</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+  <link rel="stylesheet" href="../css/modals.css" />
+  <link rel="stylesheet" href="../css/mobile.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="logo">
+      <img src="../logo.png" alt="Hard Coin" class="logo-img">
+    </a>
+    <button class="menu-toggle" id="menuToggle"></button>
+    <nav class="nav" id="mainNav">
+      <a href="../index.html" class="btn-nav">Главная</a>
+    </nav>
+  </header>
+
+  <div class="auth-container">
+    <!-- Форма будет отрисована через JS -->
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 Hard Coin Barbershop. Все права защищены.</p>
+    <p>г. Москва, ул. Примерная, д. 42 | +7 (999) 123-45-67</p>
+  </footer>
+
+  <script src="../data/initial-data.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', () => {
+      document.getElementById('mainNav')?.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

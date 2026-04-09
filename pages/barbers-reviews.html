@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>Hard Coin — Барберы и отзывы</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/mobile.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="logo">
+      <img src="../logo.png" alt="Hard Coin" class="logo-img">
+    </a>
+    <button class="menu-toggle" id="menuToggle"></button>
+    <nav class="nav" id="mainNav">
+      <a href="../index.html" class="btn-nav">Главная</a>
+      <a href="auth.html?mode=login" class="btn-nav">Войти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="section">
+      <h2>Наши барберы и отзывы</h2>
+      <div class="barbers-reviews-container" id="barbersReviewsContainer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Hard Coin Barbershop. Все права защищены.</p>
+    <p>г. Москва, ул. Примерная, д. 42 | +7 (999) 123-45-67</p>
+  </footer>
+
+  <style>
+    .barbers-reviews-container { max-width: 1000px; margin: 0 auto; }
+    .btn-back {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--text);
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+    .btn-back:hover { background: var(--gold); color: var(--black); }
+  </style>
+
+  <script src="../data/initial-data.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('menuToggle')?.addEventListener('click', () => {
+        document.getElementById('mainNav')?.classList.toggle('active');
+      });
+      
+      const currentUser = getCurrentUser();
+      const nav = document.getElementById('mainNav');
+      
+      if (currentUser && nav) {
+        nav.innerHTML = `
+          <a href="../index.html" class="btn-nav">Главная</a>
+          <a href="dashboard.html" class="btn-nav">Личный кабинет</a>
+          <button class="btn-nav" onclick="confirmLogout()">Выйти</button>
+        `;
+      }
+      
+      loadBarbersWithReviews();
+    });
+    
+    function loadBarbersWithReviews() {
+      const container = document.getElementById('barbersReviewsContainer');
+      const params = getUrlParams();
+      const selectedBarberId = params.barber;
+      
+      const users = getData('users');
+      const reviews = getData('reviews');
+      const masters = users.filter(u => u.role === 'master' || (u.role === 'admin' && u.specialization));
+      
+      let barbersToShow = masters;
+      
+      if (selectedBarberId) {
+        barbersToShow = masters.filter(m => m.id === selectedBarberId);
+        container.innerHTML = `<a href="barbers-reviews.html" class="btn-back">← Все барберы</a>`;
+      }
+      
+      barbersToShow.forEach(barber => {
+        const barberReviews = reviews.filter(r => r.masterId === barber.id);
+        const avgRating = barberReviews.length > 0 
+          ? (barberReviews.reduce((sum, r) => sum + r.rating, 0) / barberReviews.length).toFixed(1)
+          : barber.rating || '—';
+        
+        const barberCard = document.createElement('div');
+        barberCard.className = 'barber-full-card';
+        barberCard.innerHTML = `
+          <div class="barber-header">
+            <img src="${barber.avatar || 'https://via.placeholder.com/150'}" alt="${barber.firstName}" class="barber-avatar-large">
+            <div class="barber-info-large">
+              <h3>${barber.firstName} ${barber.lastName || ''}</h3>
+              <div class="barber-specialization">${barber.specialization || 'Барбер'}</div>
+              <p>Стаж: ${barber.experience || 'не указан'}</p>
+              <div class="barber-stats">
+                <div class="stat-item"><div class="stat-value">${avgRating}</div><div class="stat-label">Рейтинг</div></div>
+                <div class="stat-item"><div class="stat-value">${barberReviews.length}</div><div class="stat-label">Отзывов</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="reviews-section">
+            <h4>Отзывы клиентов</h4>
+            <div class="reviews-list">
+              ${barberReviews.length > 0 ? barberReviews.map(review => `
+                <div class="review-card">
+                  <div class="review-header">
+                    <span class="review-author">${review.clientName}</span>
+                    <span class="review-rating">${'★'.repeat(Math.floor(review.rating))}${review.rating % 1 ? '½' : ''}</span>
+                  </div>
+                  <div class="review-date">${formatDate(review.date)}</div>
+                  <div class="review-comment">${review.comment}</div>
+                </div>
+              `).join('') : '<div class="no-reviews">Пока нет отзывов</div>'}
+            </div>
+          </div>
+        `;
+        container.appendChild(barberCard);
+      });
+    }
+  </script>
+</body>
+</html>

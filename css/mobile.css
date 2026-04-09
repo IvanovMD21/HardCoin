@@ -1,0 +1,352 @@
+/* Адаптивность для мобильных устройств */
+
+@media (max-width: 1024px) {
+  .main {
+    padding: 1.5rem 1rem;
+  }
+  
+  .cards {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Шапка */
+  .header {
+    padding: 1rem 1.5rem;
+    position: relative;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--dark-gray);
+    padding: 1rem;
+    border-top: 1px solid var(--gold);
+    z-index: 99;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .btn-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Основной контент */
+  .section h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Карточки услуг */
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  /* Барберы */
+  .barbers-list {
+    gap: 1.5rem;
+  }
+
+  .barber {
+    width: 180px;
+  }
+
+  /* Дашборд */
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sidebar-menu {
+    display: none;
+  }
+
+  .sidebar-menu.active {
+    display: block;
+  }
+
+  .menu-toggle-sidebar {
+    display: block;
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .dashboard-content {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Таблицы */
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Календарь */
+  .calendar-container {
+    padding: 1rem;
+  }
+
+  .calendar-title {
+    font-size: 1.1rem;
+  }
+
+  .calendar-nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+
+  .weekday {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.2rem;
+  }
+
+  .calendar-days {
+    gap: 4px;
+  }
+
+  .day-number {
+    font-size: 0.9rem;
+  }
+
+  .appointment-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .appointment-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* Профиль */
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .welcome-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  .profile-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .profile-card-large {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Формы */
+  .booking-form-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Модальные окна */
+  .modal-content {
+    padding: 1.5rem;
+    margin: 1rem;
+    width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .section h2 {
+    font-size: 1.4rem;
+  }
+
+  .barber {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .calendar-days {
+    gap: 3px;
+  }
+
+  .calendar-day {
+    font-size: 0.8rem;
+  }
+
+  .appointments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .btn-primary,
+  .btn-book,
+  .btn-view-all {
+    width: 100%;
+    text-align: center;
+  }
+
+  .record-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-cancel,
+  .btn-review {
+    width: 100%;
+  }
+
+  /* Статусы в таблицах */
+  .status-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+
+/* ========== СТИЛИ ДЛЯ БУРГЕР-МЕНЮ В ЛК ========== */
+.sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0;                    /* ← Отступы только сверху/снизу */
+    background: var(--dark-gray);
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+    color: var(--gold);
+    cursor: pointer;
+    margin: 1rem auto;                    /* ← Центрирование */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: calc(100% - 2rem);             /* ← Ширина на весь экран минус отступы */
+    max-width: 400px;                     /* ← Максимальная ширина (по желанию) */
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .sidebar-toggle:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* Иконка уголка ▼ */
+  .sidebar-toggle span {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  /* При открытом меню иконка поворачивается вверх ▲ */
+  .sidebar-toggle.active span {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-toggle.active:hover span {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-menu {
+    transition: all 0.3s;
+  }
+}
+
+/* ========== СТИЛИ ДЛЯ ОСНОВНОГО МЕНЮ-БУРГЕРА ========== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .menu-toggle:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* Заменяем ☰ на уголок ▼ */
+  .menu-toggle::before {
+    content: "☰";
+    font-size: 1rem;
+  }
+
+  .menu-toggle span {
+    display: none;
+  }
+}

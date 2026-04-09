@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>Hard Coin — Главная</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+  <img src="logo.png" alt="Hard Coin" class="logo-img">
+</div>
+    <button class="menu-toggle" id="menuToggle"></button>
+    <nav class="nav" id="mainNav">
+      <a href="pages/auth.html?mode=register" class="btn-nav">Регистрация</a>
+      <a href="pages/auth.html?mode=login" class="btn-nav">Войти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- Услуги -->
+    <section id="services" class="section">
+      <h2>Наши услуги</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="https://barber.su/imgs/blog/031/31/blg5d20423fca98d5_91599848.jpg" alt="Стрижка + борода" class="card-img">
+          <h3>Стрижка + борода</h3>
+          <p>Профессиональная стрижка и укладка бороды</p>
+          <span class="price">от 2500 ₽</span>
+          <button class="btn-book" data-service="Стрижка + борода">Записаться</button>
+        </div>
+        <div class="card">
+          <img src="https://kirkland24.ru/image/cachewebp/catalog/samples/blog/25-1500x1000.webp" alt="Бритьё опасной бритвой" class="card-img">
+          <h3>Бритьё опасной бритвой</h3>
+          <p>Классическое бритьё с уходом за кожей</p>
+          <span class="price">1800 ₽</span>
+          <button class="btn-book" data-service="Бритьё опасной бритвой">Записаться</button>
+        </div>
+        <div class="card">
+          <img src="https://pricheskino.by/upload/medialibrary/6c2/6c261d4dfe31219e7f3fc440490d4fcb.jpg" alt="Укладка" class="card-img">
+          <h3>Укладка</h3>
+          <p>Стильная укладка с продуктами премиум-класса</p>
+          <span class="price">900 ₽</span>
+          <button class="btn-book" data-service="Укладка">Записаться</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Барберы -->
+    <section id="barbers" class="section">
+      <h2>Наши барберы</h2>
+      <div class="barbers-list" id="barbersList">
+        <!-- Загружается динамически -->
+      </div>
+      <a href="pages/barbers-reviews.html" class="btn-view-all">Смотреть всех барберов и отзывы</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Hard Coin Barbershop. Все права защищены.</p>
+    <p>г. Москва, ул. Примерная, д. 42 | +7 (999) 123-45-67</p>
+  </footer>
+
+  <script src="data/initial-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

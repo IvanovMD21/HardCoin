@@ -1,0 +1,399 @@
+:root {
+  --gold: #D4AF37;
+  --black: #121212;
+  --dark-gray: #1E1E1E;
+  --text: #E0E0E0;
+  --shadow: 0 8px 16px rgba(212, 175, 55, 0.15);
+  --light-text: rgba(224, 224, 224, 0.6);
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #f44336;
+  --info: #2196F3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--black);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Шапка */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: var(--dark-gray);
+  border-bottom: 2px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-nav {
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-nav:hover {
+  background: var(--gold);
+  color: var(--black);
+  transform: scale(1.05);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Основной контент */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  flex: 1;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section h2 {
+  color: var(--gold);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+}
+
+/* Футер */
+.footer {
+  background: var(--dark-gray);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--gold);
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0.3rem 0;
+  color: var(--light-text);
+}
+
+/* Карточки услуг */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.card {
+  background: var(--dark-gray);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 320px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: var(--gold);
+  margin: 0.8rem 0 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+}
+
+.card .price {
+  display: block;
+  margin: 1rem 0;
+  font-weight: bold;
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+/* Барберы */
+.barbers-list {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.barber {
+  text-align: center;
+  background: var(--dark-gray);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  width: 220px;
+  transition: transform 0.3s;
+}
+
+.barber:hover {
+  transform: translateY(-5px);
+}
+
+.barber-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+}
+
+.barber h3 {
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.barber p {
+  margin: 0.3rem 0;
+}
+
+/* Кнопки */
+.btn-book {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.btn-book:hover {
+  background: #f0c35c;
+  transform: scale(1.05);
+}
+
+.btn-view {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-top: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.btn-view:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.btn-view-all {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.btn-view-all:hover {
+  background: #f0c35c;
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: #f0c35c;
+  transform: scale(1.05);
+}
+
+/* ========== ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ ЗВЕЗД ========== */
+.barber-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0.5rem 0;
+}
+
+.stars-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.star-full {
+  color: var(--gold);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.star-empty {
+  color: #444;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.star-half {
+  position: relative;
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+}
+
+.star-half::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  width: 50%;
+  overflow: hidden;
+}
+
+.star-half::after {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #444;
+  width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 50%);
+}
+
+.barber-rating > span:last-child {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  margin-left: 5px;
+}
+/* ========== СТИЛИ ДЛЯ ЛОГОТИПА ========== */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+}
+
+/* Отступ слева ТОЛЬКО на десктопе */
+@media (min-width: 769px) {
+  .logo {
+    margin-left: 3rem;  /* ← РЕГУЛИРУЙТЕ ЭТО ЗНАЧЕНИЕ */
+  }
+}
+
+/* Для мобильных устройств - без отступа */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+  .logo {
+    margin-left: 0;  /* ← Явно убираем отступ */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 35px;
+  }
+}

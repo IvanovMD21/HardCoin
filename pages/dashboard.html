@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>Hard Coin — Личный кабинет</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/calendar.css" />
+  <link rel="stylesheet" href="../css/modals.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/mobile.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="logo">
+      <img src="../logo.png" alt="Hard Coin" class="logo-img">
+    </a>
+    <button class="menu-toggle" id="menuToggle"></button>
+    <nav class="nav" id="mainNav">
+      <a href="../index.html" class="btn-nav">Главная</a>
+    </nav>
+  </header>
+
+  <div class="dashboard">
+    <!-- Кнопка для мобильного меню -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <span>></span> Меню
+    </button>
+    
+    <!-- Боковое меню -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="user-info">
+          <div class="user-avatar" id="userAvatar">👤</div>
+          <div>
+            <div class="user-name" id="userName"></div>
+            <div class="user-role" id="userRole"></div>
+          </div>
+        </div>
+      </div>
+      
+      <ul class="sidebar-menu" id="sidebarMenu">
+        <!-- Меню будет отрисовано в зависимости от роли -->
+      </ul>
+      
+      <div class="sidebar-footer">
+        <button class="btn-logout" onclick="confirmLogout()">Выйти</button> 
+      </div>
+    </aside>
+
+    <!-- Основной контент -->
+    <main class="dashboard-content" id="dashboardContent">
+      <!-- Контент будет отрисован в зависимости от выбранного пункта меню -->
+    </main>
+  </div>
+
+  <!-- Модальные окна -->
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Детали записи</h3>
+        <button class="modal-close" onclick="closeModal('appointmentModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="editModalTitle">Редактирование</h3>
+        <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="editModalBody"></div>
+    </div>
+  </div>
+
+  <script src="../data/initial-data.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/client.js"></script>
+  <script src="../js/master.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Проверка авторизации
+      const user = checkAuth();
+      if (!user) return;
+      
+      // Инициализация мобильного меню
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+      
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+          mainNav.classList.toggle('active');
+        });
+      }
+      
+      // Инициализация бургер-меню в ЛК
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarMenu = document.getElementById('sidebarMenu');
+
+if (sidebarToggle && sidebarMenu) {
+  sidebarToggle.addEventListener('click', () => {
+    sidebarMenu.classList.toggle('active');
+    sidebarToggle.classList.toggle('active'); // Добавить эту строку
+  });
+}
+
+// Закрытие меню при клике вне его
+document.addEventListener('click', (e) => {
+  if (sidebarMenu && sidebarToggle) {
+    if (!sidebarMenu.contains(e.target) && !sidebarToggle.contains(e.target)) {
+      sidebarMenu.classList.remove('active');
+      sidebarToggle.classList.remove('active'); // Добавить эту строку
+    }
+  }
+  if (mainNav && menuToggle) {
+    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+      mainNav.classList.remove('active');
+      menuToggle.classList.remove('active');
+    }
+  }
+});
+      
+      // Отображение информации о пользователе
+      document.getElementById('userName').textContent = `${user.firstName} ${user.lastName || ''}`;
+      document.getElementById('userRole').textContent = getRoleName(user.role);
+      document.getElementById('userAvatar').textContent = user.firstName?.charAt(0) || '👤';
+      
+      // Инициализация в зависимости от роли
+      if (user.role === 'admin') {
+        initAdminDashboard();
+      } else if (user.role === 'master') {
+        initMasterDashboard();
+      } else {
+        initClientDashboard();
+      }
+    });
+    
+    function getRoleName(role) {
+      const roles = {
+        'admin': 'Администратор',
+        'master': 'Мастер',
+        'client': 'Клиент'
+      };
+      return roles[role] || role;
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+    
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+    
+    // Закрытие модальных окон по клику вне их
+    window.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
