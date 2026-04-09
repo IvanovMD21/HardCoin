@@ -18,11 +18,21 @@ function getCurrentUser() {
   }
 }
 
-// Безопасный выход из системы
 function logout() {
   localStorage.removeItem('currentUser');
   sessionStorage.clear();
-  window.location.href = '../index.html';
+  
+  // Определяем, где мы находимся
+  const path = window.location.pathname;
+  const repoName = 'hardcoin'; // ← ЗАМЕНИТЕ на имя вашего репозитория!
+  
+  if (path.includes('/pages/')) {
+    // Если мы в папке pages, поднимаемся на уровень выше
+    window.location.href = '../index.html';
+  } else {
+    // Если мы в корне или другом месте
+    window.location.href = `/${repoName}/`;
+  }
 }
 
 // Проверка авторизации
