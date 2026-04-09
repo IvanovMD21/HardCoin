@@ -100,9 +100,17 @@ function initBookingButtons() {
       const currentUser = getCurrentUser();
       
       if (!currentUser) {
-        window.location.href = `pages/auth.html?mode=register&service=${encodeURIComponent(service)}`;
+        const path = window.location.pathname;
+        const authPath = path.includes('/pages/') 
+          ? `auth.html?mode=register&service=${encodeURIComponent(service)}`
+          : `pages/auth.html?mode=register&service=${encodeURIComponent(service)}`;
+        window.location.href = authPath;
       } else {
-        window.location.href = `pages/dashboard.html#booking?service=${encodeURIComponent(service)}`;
+        const path = window.location.pathname;
+        const dashboardPath = path.includes('/pages/')
+          ? `dashboard.html#booking?service=${encodeURIComponent(service)}`
+          : `pages/dashboard.html#booking?service=${encodeURIComponent(service)}`;
+        window.location.href = dashboardPath;
       }
     });
   });
