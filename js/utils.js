@@ -24,7 +24,7 @@ function logout() {
   
   // Определяем, где мы находимся
   const path = window.location.pathname;
-  const repoName = 'hardcoin'; // ← ЗАМЕНИТЕ на имя вашего репозитория!
+  const repoName = 'HardCoin';
   
   if (path.includes('/pages/')) {
     // Если мы в папке pages, поднимаемся на уровень выше
